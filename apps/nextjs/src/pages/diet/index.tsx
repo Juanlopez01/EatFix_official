@@ -48,7 +48,7 @@ const Diet : NextPage = () => {
   return (
     <div className='bg-gradient-to-b from-[#101212] relative to-[#08201D] h-min'>
     <NavBar />
-    <div className=' flex flex-col items-center justify-center pt-20 gap-6'>
+    <div className='  flex flex-col items-center justify-center pt-20 gap-6'>
       <h2 className='text-transparent bg-clip-text bg-gradient-to-b from-green-300 to-white font-bold text-3xl'>Diet form</h2>
       <form className='flex flex-col w-3/4 items-center justify-center' onSubmit={handleSubmit}>
         <div className='w-full'>
