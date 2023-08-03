@@ -114,4 +114,8 @@ export const authOptions: NextAuthOptions = {
       return session;
     },
   },
+  jwt: {
+    secret: process.env.NEXTAUTH_JWT_SECRET as string,
+  },
+  secret: process.env.NEXTAUTH_SECRET as string,
 };
