@@ -2,18 +2,13 @@ import type { GetServerSideProps, InferGetServerSidePropsType, NextPage } from '
 import Head from 'next/head';
 import Link from 'next/link';
 import { signIn, useSession } from 'next-auth/react';
-import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { Button, ButtonSize, ButtonVariant } from 'side-ui';
-import { api } from '~/utils/api';
-import { useState } from 'react';
+import { Button, ButtonVariant } from 'side-ui';
 import NavBar from '~/components/NavBar/NavBar';
-import Footer from '~/components/Footer/Footer';
 
 type HomeProps = {};
 
 const Home: NextPage = (_props: InferGetServerSidePropsType<typeof getServerSideProps>) => {
-  const { t, i18n } = useTranslation(['nextjs']);
   const {data: session} = useSession();
   console.log(session)
   return (

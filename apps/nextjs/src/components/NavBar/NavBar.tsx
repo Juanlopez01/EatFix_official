@@ -1,11 +1,10 @@
 import { signIn, useSession } from 'next-auth/react'
 import Link from 'next/link'
 import React from 'react'
-import { Button, ButtonSize, ButtonVariant, Icon, IconCatalog } from 'side-ui'
+import { Button,  ButtonVariant } from 'side-ui'
 import { Avatar } from '../Avatar/Avatar'
-type Props = {}
 
-const NavBar= (props : any) => {
+const NavBar= () => {
     const {data: session} = useSession()
   return (
     <header className="absolute inset-x-0 top-0 z-10 w-full">

@@ -1,3 +1,4 @@
+import type { NextPage } from 'next'
 import { signIn, useSession } from 'next-auth/react'
 import React, { useEffect, useState } from 'react'
 import { Button, ButtonVariant } from 'side-ui'
@@ -5,10 +6,9 @@ import NavBar from '~/components/NavBar/NavBar'
 import { api } from '~/utils/api'
 import { pricesForm, typeOfDiets } from '~/utils/formUtils'
 
-type Props = {}
 
 
-const index = (props: Props) => {
+const Diet : NextPage = () => {
   const {data: session} = useSession()
   const initialState = {
     type: 'Normal',
@@ -30,20 +30,18 @@ const index = (props: Props) => {
       if(session && session.user.id) setForm({...form, userId: session.user.id});
 
     }, [session])
-    const {data} = api.diet.getDiets.useQuery()
-    const handleChange = (event: any) => {
-      event.preventDefault();
+    const handleChange = (event : {target: {id: string, value : string }}) => {
       event.target.id === 'age' || event.target.id === 'height' || event.target.id === 'weight' ?
       setForm({...form, [event.target.id]: parseInt(event.target.value)}) :
-      setForm({...form, [event.target.id]: event.target.value}) ;
+      setForm({...form, [event.target.id]: event.target.value.toString()}) ;
     }
     
-    const handleSubmit = async (e: any) => {
+    const handleSubmit = (e: any) => {
       e.preventDefault();
       if(session?.user.id !== ''){
         if(form.userId !== '') createDietApi(form);
       }else {
-        signIn('auth0')
+        void(signIn('auth0'))
       }
     }
 
@@ -54,7 +52,7 @@ const index = (props: Props) => {
       <h2 className='text-transparent bg-clip-text bg-gradient-to-b from-green-300 to-white font-bold text-3xl'>Diet form</h2>
       <form className='flex flex-col w-3/4 items-center justify-center' onSubmit={handleSubmit}>
         <div className='w-full'>
-          <label htmlFor="" className="text-base font-medium text-green-300 pt-4"> Type of diet </label>
+          <label htmlFor='type' className="text-base font-medium text-green-300 pt-4"> Type of diet </label>
           <div className="mt-2">
               <select
                   onChange={handleChange}
@@ -64,11 +62,11 @@ const index = (props: Props) => {
                   className="block w-full p-4 text-green-300 placeholder-gray-500 transition-all duration-200 border border-gray-200 rounded-md bg-transparent focus:outline-none focus:border-green-300 focus:bg-transparent caret-green-300"
               >
                 {typeOfDiets.map((diet :string) => {
-                  return <option className='bg-[#101212]' value={diet}>{diet}</option>;
+                  return <option className='bg-[#101212]' value={diet} key={diet}>{diet}</option>;
                 })}
               </select>
           </div>
-          <label htmlFor="" className="text-base font-medium text-green-300 pt-4"> Age </label>
+          <label htmlFor='age'  className="text-base font-medium text-green-300 pt-4"> Age </label>
           <div className="mt-2.5">
               <input
                   type="number"
@@ -79,7 +77,7 @@ const index = (props: Props) => {
                   className="block w-full p-4 text-green-300 placeholder-gray-500 transition-all duration-200 border border-gray-200 rounded-md bg-transparent focus:outline-none focus:border-green-300 focus:bg-transparent caret-green-300"
               />
           </div>
-          <label htmlFor="" className="text-base font-medium text-green-300 pt-4"> Weight (kg) </label>
+          <label htmlFor='weight' className="text-base font-medium text-green-300 pt-4"> Weight (kg) </label>
           <div className="mt-2.5">
               <input
                   type="number"
@@ -90,7 +88,7 @@ const index = (props: Props) => {
                   className="block w-full p-4 text-green-300 placeholder-gray-500 transition-all duration-200 border border-gray-200 rounded-md bg-transparent focus:outline-none focus:border-green-300 focus:bg-transparent caret-green-300"
               />
           </div>
-          <label htmlFor="" className="text-base font-medium text-green-300 pt-4"> Height (cm) </label>
+          <label htmlFor='height' className="text-base font-medium text-green-300 pt-4"> Height (cm) </label>
           <div className="mt-2.5">
               <input
                   type="number"
@@ -104,7 +102,7 @@ const index = (props: Props) => {
         </div>
 
         <div className='w-full'>
-          <label htmlFor="" className="text-base font-medium text-green-300 pt-4"> Country </label>
+          <label htmlFor='country' className="text-base font-medium text-green-300 pt-4"> Country </label>
           <div className="mt-2.5">
               <input
                   type="text"
@@ -115,7 +113,7 @@ const index = (props: Props) => {
                   className="block w-full p-4 text-green-300 placeholder-gray-500 transition-all duration-200 border border-gray-200 rounded-md bg-transparent focus:outline-none focus:border-green-300 focus:bg-transparent caret-green-300"
               />
           </div>
-          <label htmlFor="" className="text-base font-medium text-green-300 pt-4"> Price </label>
+          <label htmlFor='price' className="text-base font-medium text-green-300 pt-4"> Price </label>
           <div className="mt-2.5">
               <select
                   onChange={handleChange}
@@ -125,11 +123,11 @@ const index = (props: Props) => {
                   className="block w-full p-4 text-green-300 placeholder-gray-500 transition-all duration-200 border border-gray-200 rounded-md bg-transparent focus:outline-none focus:border-green-300 focus:bg-transparent caret-green-300"
               >
                 {pricesForm.map((price: string) => {
-                  return <option className='bg-[#101212]' value={price}>{price}</option>
+                  return <option className='bg-[#101212]' value={price} key={price}>{price}</option>
                 })}
               </select>
           </div>
-          <label htmlFor="" className="text-base font-medium text-green-300 pt-4"> Foods to avoid </label>
+          <label htmlFor='dontuse' className="text-base font-medium text-green-300 pt-4"> Foods to avoid </label>
           <div className="mt-2.5">
               <input
                   type="text"
@@ -140,7 +138,7 @@ const index = (props: Props) => {
                   className="block w-full p-4 text-green-300 placeholder-gray-500 transition-all duration-200 border border-gray-200 rounded-md bg-transparent focus:outline-none focus:border-green-300 focus:bg-transparent caret-green-300"
               />
           </div>
-          <label htmlFor="" className="text-base font-medium text-green-300 pt-4"> Preferences </label>
+          <label htmlFor='preferences' className="text-base font-medium text-green-300 pt-4"> Preferences </label>
           <div className="mt-2.5">
               <input
                   type="text"
@@ -159,4 +157,4 @@ const index = (props: Props) => {
   )
 }
 
-export default index
+export default Diet
