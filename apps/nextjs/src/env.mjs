@@ -8,7 +8,7 @@ const server = z.object({
   DATABASE_URL: z.string().url().min(1),
   NODE_ENV: z.enum(['development', 'test', 'production']),
   NEXTAUTH_SECRET:
-    process.env.NODE_ENV === 'production' ? z.string() : z.string().optional(),
+    process.env.NODE_ENV === 'production' ? z.string().min(1) : z.string().optional(),
   NEXTAUTH_URL: z.preprocess(
     // This makes Vercel deployments not fail if you don't set NEXTAUTH_URL
     // Since NextAuth.js automatically uses the VERCEL_URL if present.
@@ -21,7 +21,7 @@ const server = z.object({
   AUTH0_CLIENT_ID: z.string(),
   AUTH0_CLIENT_SECRET: z.string(),
   AUTH0_ISSUER: z.string(),
-  NEXTAUTH_JWT_SECRET: z.string(),
+  NEXTAUTH_JWT_SECRET: z.string().min(1),
   DISCORD_WEBHOOK_URL: z.string().url().min(1),
   PREFIX: z.string(),
 });
