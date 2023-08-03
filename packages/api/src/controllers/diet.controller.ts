@@ -4,12 +4,10 @@ import { i18n } from '@acme/i18n';
 import { Response, TRPCErrorCode, type Params } from '../common';
 import type {
   CreateDietTypes,
-  createDietSchema,
 } from '../schema/diet.schema';
 
 export const createDietHandler = async ({ ctx, input }: Params<CreateDietTypes>) => {
   try {
-    console.log(input)
 
     const diet = await ctx.prisma.diet.create({
       data: {
@@ -26,7 +24,6 @@ export const createDietHandler = async ({ ctx, input }: Params<CreateDietTypes>)
         },
       },
     });
-    console.log('DESPUES',diet)
     return {
       status: Response.SUCCESS,
       data: {
