@@ -77,6 +77,21 @@ model User {
     isActive      Boolean   @default(true) @map("is_active")
     createdAt     DateTime  @default(now()) @map("created_at")
     updatedAt     DateTime  @updatedAt @map("updated_at")
+    diets         Diet[]
 
     @@map("users")
+}
+
+model Diet {
+    id          String  @id @default(cuid())
+    userId      String  @map("user_id")
+    user        User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+    type        String?
+    age         Int
+    weight      Int
+    height      Int
+    country     String?
+    price       String?
+    dontuse     String
+    preferences String?
 }
