@@ -1,6 +1,5 @@
 import { PrismaAdapter } from '@next-auth/prisma-adapter';
 import { type DefaultSession, type NextAuthOptions } from 'next-auth';
-import DiscordProvider, { type DiscordProfile } from 'next-auth/providers/discord';
 import Auth0Provider, { type Auth0Profile} from 'next-auth/providers/auth0';
 import { prisma } from '@acme/db';
 import {
@@ -67,7 +66,11 @@ export const authOptions: NextAuthOptions = {
        * The Discord provider flow
        */
       if (account?.provider === 'auth0') {
-        const { username, image_url, email } = profile as Auth0Profile;
+        interface Auth0Extends extends Auth0Profile {
+          username: string
+          image_url: string
+        }
+        const { username , image_url, email } = profile as Auth0Extends;
         const { provider, providerAccountId } = account;
         const { name } = newUser;
 
