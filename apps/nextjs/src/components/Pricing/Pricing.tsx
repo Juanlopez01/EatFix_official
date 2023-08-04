@@ -52,7 +52,7 @@ const Pricing = (props: Props) => {
                                 </li>
                             </ul>
 
-                            <Link href="#" title="" className="inline-flex items-center justify-center w-full px-4 py-4 mt-8 font-semibold text-white transition-all duration-200 bg-green-800 bg-opacity-30 rounded-md hover:bg-green-900 focus:bg-green-900" role="button"> Get 14 Days Free Trial </Link>
+                            <Link href="#" title="" className="inline-flex items-center justify-center w-full px-4 py-4 mt-8 font-semibold text-white transition-all duration-200 bg-green-800 bg-opacity-30 rounded-md hover:bg-green-900 focus:bg-green-900" role="button"> Get plan </Link>
                         </div>
                     </div>
 
