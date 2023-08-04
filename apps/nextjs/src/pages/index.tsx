@@ -5,6 +5,8 @@ import { signIn, useSession } from 'next-auth/react';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { Button, ButtonVariant } from 'side-ui';
 import NavBar from '~/components/NavBar/NavBar';
+import Pricing from '~/components/Pricing/Pricing';
+import Footer from '~/components/Footer/Footer';
 
 type HomeProps = {};
 
@@ -18,7 +20,7 @@ const Home: NextPage = (_props: InferGetServerSidePropsType<typeof getServerSide
         <meta name="description" content="Side Project Starter Kit" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="bg-gradient-to-b from-[#101212] relative to-[#08201D]">
+      <div className="bg-gradient-to-b flex flex-col justify-center items-center from-[#101212] relative to-[#08201D]">
         <NavBar />
 
         <section className="relative lg:h-min pt-24 pb-10 sm:pt-32 sm:pb-16 lg:pb-24">
@@ -125,8 +127,9 @@ const Home: NextPage = (_props: InferGetServerSidePropsType<typeof getServerSide
             <p className='text-white'>Using Eat Fix is simple, just fill in the form with your data and provide us with your email. The team will make the best diet based on your needs, and we will send it directly to your email.</p>
           </div>
         </section>
+        <Pricing />
+        <Footer />
       </div>
-
     </>
   );
 };

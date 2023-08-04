@@ -25,7 +25,7 @@ const NavBar= () => {
                         {session && <p className="hidden text-base text-white transition-all duration-200 lg:inline-flex hover:text-opacity-80"> {session.user.name} </p>}
 
                         {!session && <Button className="inline-flex items-center justify-center px-3 sm:px-5 py-2.5 text-sm sm:text-base font-semibold transition-all duration-200 text-white bg-white/20 hover:bg-white/40 focus:bg-white/40 rounded-lg" role="button"> Sign In </Button>}
-                        {session && <Avatar altText={session.user.name?? ''} imgUrl={session.user.image ?? ''}/>}
+                        {session && session.user.image && <Avatar altText={session.user.name?? ''} imgUrl={session.user.image ?? ''}/>}
                     </div>
                 </div>
             </div>
