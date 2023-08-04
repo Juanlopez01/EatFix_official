@@ -12,13 +12,12 @@ type HomeProps = {};
 
 const Home: NextPage = (_props: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   const {data: session} = useSession();
-  console.log(session)
   return (
     <>
       <Head>
         <title>Eat Fix</title>
         <meta name="description" content="Side Project Starter Kit" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="https://res.cloudinary.com/dg0okhqyc/image/upload/v1691181482/eat_fix_pezrn1.png" />
       </Head>
       <div className="bg-gradient-to-b flex flex-col justify-center items-center from-[#101212] relative to-[#08201D]">
         <NavBar />
