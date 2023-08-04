@@ -1,9 +1,8 @@
 import Link from 'next/link'
 import React from 'react'
 
-type Props = {}
 
-const Pricing = (props: Props) => {
+const Pricing = () => {
   return (
     <div>
         <section className="py-10 sm:py-16 lg:py-24">
@@ -52,7 +51,7 @@ const Pricing = (props: Props) => {
                                 </li>
                             </ul>
 
-                            <Link href="#" title="" className="inline-flex items-center justify-center w-full px-4 py-4 mt-8 font-semibold text-white transition-all duration-200 bg-green-800 bg-opacity-30 rounded-md hover:bg-green-900 focus:bg-green-900" role="button"> Get plan </Link>
+                            <Link href="/" title="" className="inline-flex items-center justify-center w-full px-4 py-4 mt-8 font-semibold text-white transition-all duration-200 bg-green-800 bg-opacity-30 rounded-md hover:bg-green-900 focus:bg-green-900" role="button"> Get plan </Link>
                         </div>
                     </div>
 
@@ -94,7 +93,7 @@ const Pricing = (props: Props) => {
                                 </li>
                             </ul>
 
-                            <a href="#" title="" className="inline-flex items-center justify-center w-full px-4 py-4 mt-8 font-semibold text-white transition-all duration-200 rounded-md bg-gradient-to-r from-green-600 to-blue-600 hover:opacity-80 focus:opacity-80" role="button"> Get plan </a>
+                            <a href="/" title="" className="inline-flex items-center justify-center w-full px-4 py-4 mt-8 font-semibold text-white transition-all duration-200 rounded-md bg-gradient-to-r from-green-600 to-blue-600 hover:opacity-80 focus:opacity-80" role="button"> Get plan </a>
                         </div>
                     </div>
                 </div>

@@ -3,7 +3,6 @@ import Footer from '~/components/Footer/Footer'
 import NavBar from '~/components/NavBar/NavBar'
 import Pricing from '~/components/Pricing/Pricing'
 
-type Props = {}
 
 const index = () => {
   return (

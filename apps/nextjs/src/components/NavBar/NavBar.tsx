@@ -2,7 +2,6 @@ import { signIn, signOut, useSession } from 'next-auth/react'
 import Link from 'next/link'
 import React from 'react'
 import { Button,  ButtonVariant } from 'side-ui'
-import { Avatar } from '../Avatar/Avatar'
 import { useRouter } from 'next/router'
 
 const NavBar= () => {

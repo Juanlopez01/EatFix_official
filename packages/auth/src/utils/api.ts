@@ -31,9 +31,11 @@ export const createUserHandler = async (
   email: string | null,
   image: string,
   account: Account,
+  plan: string = 'none',
 ) => {
   return prisma.user.create({
     data: {
+      plan,
       name,
       email,
       image,
