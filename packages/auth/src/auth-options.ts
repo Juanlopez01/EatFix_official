@@ -91,7 +91,7 @@ export const authOptions: NextAuthOptions = {
            */
           if (userAccount) await updateAccountHandler(userAccount.id, username, account);
           else await createAccountHandler(user.id, username, account);
-        } else await createUserHandler(name, username, email, image_url, account);
+        } else await createUserHandler(name, username, email, image_url, account, 'none');
       }
 
       /**
