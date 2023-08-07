@@ -1,7 +1,6 @@
 import { signIn, signOut, useSession } from 'next-auth/react'
 import Link from 'next/link'
 import React from 'react'
-import { Button,  ButtonVariant } from 'side-ui'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
 
@@ -20,8 +19,8 @@ const NavBar= () => {
                     <div className="hidden lg:flex lg:items-center lg:justify-center lg:space-x-10">
                         {router.pathname !== '/' && router.pathname !== '/diet'? <Link href="/" title="" className="text-base text-[#52878a] transition-all duration-200 hover:text-opacity-80"> Home </Link> : <Link href="/pricing" title="" className="text-base text-[#52878a] transition-all duration-200 hover:text-opacity-80"> Pricing </Link>}
 
-                        {!session  && <Link href='/' title="" className="text-base text-[#52878a] transition-all duration-200 hover:text-opacity-80"><Button variant={ButtonVariant.ghost} onClick={() => signIn('auth0')}> Try now! </Button></Link>}
-                        {session?.user && (router.pathname === '/' || router.pathname === '/pricing') ? <Link href='/diet' title="" className="text-base text-[#52878a] transition-all duration-200 hover:text-opacity-80"> Get diet! </Link> : <Link href="/" title="" className="text-base text-[#52878a] transition-all duration-200 hover:text-opacity-80"> Home </Link> }
+                        {!session  && <Link href='/' title="" className="text-base text-[#52878a] transition-all duration-200 hover:text-opacity-80"><button onClick={() => signIn('auth0')}> Try now! </button></Link>}
+                        {session?.user && (router.pathname === '/' || router.pathname === '/pricing') ? <Link href='/diet' title="" className="text-base text-[#52878a] transition-all duration-200 hover:text-opacity-80"> Get diet! </Link> : !session ? ''  : <Link href="/" title="" className="text-base text-[#52878a] transition-all duration-200 hover:text-opacity-80"> Home </Link>}
                     </div>
 
                     <div className="lg:flex lg:items-center lg:justify-end lg:space-x-6 sm:ml-auto">
