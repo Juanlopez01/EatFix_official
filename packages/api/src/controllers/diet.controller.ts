@@ -13,8 +13,8 @@ export const createDietHandler = async ({ ctx, input }: Params<CreateDietTypes>)
       data: {
         type: input.type ?? 'Normal',
         age: input.age,
-        weight: input.weight.valueOf(),
-        height: input.height.valueOf(),
+        size: input.size ?? '',
+        goal: input.goal ?? '',
         country: input.country ?? '',
         price: input.price ?? '',
         dontuse: input.dontuse ?? '',

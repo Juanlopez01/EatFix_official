@@ -6,7 +6,7 @@ import Pricing from '~/components/Pricing/Pricing'
 
 const index = () => {
   return (
-    <div className='flex flex-col items-center bg-gradient-to-b from-[#101212] relative to-[#08201D] h-min md:min-h-screen md:justify-between'>
+    <div className='bg-gradient-to-b flex flex-col justify-center items-center from-gray-200 relative to-[#558F92] md:min-h-screen md:justify-between'>
         <NavBar />
         <Pricing />
         <Footer />

@@ -5,7 +5,7 @@ import { Button, ButtonVariant } from 'side-ui'
 import Footer from '~/components/Footer/Footer'
 import NavBar from '~/components/NavBar/NavBar'
 import { api } from '~/utils/api'
-import { pricesForm, typeOfDiets } from '~/utils/formUtils'
+import { countries, goalsForm, pricesForm, sizesForm, typeOfDiets } from '~/utils/formUtils'
 
 
 
@@ -14,9 +14,9 @@ const Diet : NextPage = () => {
   const initialState = {
     type: 'Normal',
     age: 0,
-    weight:0,
-    height:0,
-    country: '',
+    size: 'Average',
+    goal: 'Any',
+    country: 'Other',
     price:'Normal',
     dontuse: '',
     preferences:'',
@@ -46,115 +46,124 @@ const Diet : NextPage = () => {
         void(signIn('auth0'))
       }
     }
-
+    
   return (
-    <div className='flex flex-col items-center bg-gradient-to-b from-[#101212] relative to-[#08201D] h-min md:min-h-screen md:justify-between'>
+    <div className='flex flex-col items-center bg-gradient-to-b from-gray-200 relative to-[#558F92] h-min md:min-h-screen md:justify-between'>
     <NavBar />
     <div className='w-3/4  flex flex-col items-center justify-center pt-20 gap-6 '>
-      <h2 className='text-transparent bg-clip-text bg-gradient-to-b from-green-300 to-white font-bold text-3xl md:text-5xl'>Diet form</h2>
+      <h2 className='text-[#3a6062] font-bold text-3xl md:text-5xl'>Diet form</h2>
       <form className='flex flex-col w-[95%] items-center justify-center' onSubmit={handleSubmit}>
         <div className='w-full md:flex md:gap-8'>
           <div className='w-full'>
-            <label htmlFor='type' className="text-base font-medium text-green-300 pt-4"> Type of diet </label>
-            <div className="mt-2">
+            <label htmlFor='type' className="text-base font-medium text-[#3a6062] pt-4"> Type of diet </label>
+            <div className="mb-2">
                 <select
                     onChange={handleChange}
                     value={form.type}
                     id="type"
-                    placeholder="Enter email to get started"
-                    className="block w-full p-4 text-green-300 placeholder-gray-500 transition-all duration-200 border border-gray-200 rounded-md bg-transparent focus:outline-none focus:border-green-300 focus:bg-transparent caret-green-300"
+                    placeholder="Select a type"
+                    className="block w-full p-4 text-[#3a6062] placeholder-gray-500 transition-all duration-200 border border-gray-200 rounded-md bg-transparent focus:outline-none focus:border-green-300 focus:bg-transparent caret-green-300"
                 >
                   {typeOfDiets.map((diet :string) => {
-                    return <option className='bg-[#101212]' value={diet} key={diet}>{diet}</option>;
+                    return <option value={diet} key={diet}>{diet}</option>;
                   })}
                 </select>
             </div>
-            <label htmlFor='age'  className="text-base font-medium text-green-300 pt-4"> Age </label>
-            <div className="mt-2.5">
+            <label htmlFor='age'  className="text-base font-medium text-[#3a6062] pt-4"> Age </label>
+            <div className="mb-2.5">
                 <input
                     type="number"
                     onChange={handleChange}
                     value={form.age.valueOf()}
                     id="age"
-                    placeholder="Enter email to get started"
-                    className="block w-full p-4 text-green-300 placeholder-gray-500 transition-all duration-200 border border-gray-200 rounded-md bg-transparent focus:outline-none focus:border-green-300 focus:bg-transparent caret-green-300"
+                    placeholder="Enter your age"
+                    className="block w-full p-4 text-[#3a6062] placeholder-gray-500 transition-all duration-200 border border-gray-200 rounded-md bg-transparent focus:outline-none focus:border-green-300 focus:bg-transparent caret-green-300"
                 />
             </div>
-            <label htmlFor='weight' className="text-base font-medium text-green-300 pt-4"> Weight (kg) </label>
-            <div className="mt-2.5">
-                <input
-                    type="number"
+            <label htmlFor='weight' className="text-base font-medium text-[#3a6062] pt-4"> Size </label>
+            <div className="mb-2.5">
+                <select
                     onChange={handleChange}
-                    value={form.weight}
-                    id="weight"
-                    placeholder="Enter email to get started"
-                    className="block w-full p-4 text-green-300 placeholder-gray-500 transition-all duration-200 border border-gray-200 rounded-md bg-transparent focus:outline-none focus:border-green-300 focus:bg-transparent caret-green-300"
-                />
+                    value={form.size}
+                    id="size"
+                    placeholder="Enter your weight"
+                    className="block w-full p-4 text-[#3a6062] placeholder-gray-500 transition-all duration-200 border border-gray-200 rounded-md bg-transparent focus:outline-none focus:border-green-300 focus:bg-transparent caret-green-300"
+                >
+                  {sizesForm.map((size : string) => {
+                    return <option value={size} key={size}>{size}</option>
+                  })}
+                </select>
             </div>
-            <label htmlFor='height' className="text-base font-medium text-green-300 pt-4"> Height (cm) </label>
-            <div className="mt-2.5">
-                <input
-                    type="number"
+            <label htmlFor='height' className="text-base font-medium text-[#3a6062]"> Goal </label>
+            <div className="">
+                <select
                     onChange={handleChange}
-                    value={form.height}
-                    id="height"
-                    placeholder="Enter email to get started"
-                    className="block w-full p-4 text-green-300 placeholder-gray-500 transition-all duration-200 border border-gray-200 rounded-md bg-transparent focus:outline-none focus:border-green-300 focus:bg-transparent caret-green-300"
-                />
+                    value={form.goal}
+                    id="goal"
+                    placeholder="Enter your goal"
+                    className="block w-full p-4 text-[#3a6062] placeholder-gray-500 transition-all duration-200 border border-gray-200 rounded-md bg-transparent focus:outline-none focus:border-green-300 focus:bg-transparent caret-green-300"
+                >
+                  {goalsForm.map((goal: string) => {
+                    return <option value={goal} key={goal}>{goal}</option>
+                  })}
+                </select>
             </div>
           </div>
 
-          <div className='w-full'>
-            <label htmlFor='country' className="text-base font-medium text-green-300 pt-4"> Country </label>
-            <div className="mt-2.5">
-                <input
-                    type="text"
+          <div className='w-full pt-2 md:pt-0'>
+            <label htmlFor='country' className="text-base font-medium text-[#3a6062] pt-4"> Country </label>
+            <div className="mb-2.5">
+                <select
                     onChange={handleChange}
                     value={form.country}
                     id="country"
                     placeholder="Enter email to get started"
-                    className="block w-full p-4 text-green-300 placeholder-gray-500 transition-all duration-200 border border-gray-200 rounded-md bg-transparent focus:outline-none focus:border-green-300 focus:bg-transparent caret-green-300"
-                />
+                    className="block w-full p-4 text-[#3a6062] placeholder-gray-500 transition-all duration-200 border border-gray-200 rounded-md bg-transparent focus:outline-none focus:border-green-300 focus:bg-transparent caret-green-300"
+                >
+                  {countries.map((country : string) => {
+                    return <option value={country} key={country}>{country}</option>
+                  })}
+                </select>
             </div>
-            <label htmlFor='price' className="text-base font-medium text-green-300 pt-4"> Price </label>
-            <div className="mt-2.5">
+            <label htmlFor='price' className="text-base font-medium text-[#3a6062] pt-4"> Cost </label>
+            <div className="mb-2.5">
                 <select
                     onChange={handleChange}
                     value={form.price}
                     id="price"
                     placeholder="Enter email to get started"
-                    className="block w-full p-4 text-green-300 placeholder-gray-500 transition-all duration-200 border border-gray-200 rounded-md bg-transparent focus:outline-none focus:border-green-300 focus:bg-transparent caret-green-300"
+                    className="block w-full p-4 text-[#3a6062] placeholder-gray-500 transition-all duration-200 border border-gray-200 rounded-md bg-transparent focus:outline-none focus:border-green-300 focus:bg-transparent caret-green-300"
                 >
                   {pricesForm.map((price: string) => {
-                    return <option className='bg-[#101212]' value={price} key={price}>{price}</option>
+                    return <option value={price} key={price}>{price}</option>
                   })}
                 </select>
             </div>
-            <label htmlFor='dontuse' className="text-base font-medium text-green-300 pt-4"> Foods to avoid </label>
-            <div className="mt-2.5">
+            <label htmlFor='dontuse' className="text-base font-medium text-[#3a6062] pt-4"> Foods to avoid </label>
+            <div className="mb-2.5">
                 <input
                     type="text"
                     onChange={handleChange}
                     value={form.dontuse}
                     id="dontuse"
-                    placeholder="Enter email to get started"
-                    className="block w-full p-4 text-green-300 placeholder-gray-500 transition-all duration-200 border border-gray-200 rounded-md bg-transparent focus:outline-none focus:border-green-300 focus:bg-transparent caret-green-300"
+                    placeholder="Indicates the foods to avoid"
+                    className="block w-full p-4 text-[#3a6062] placeholder-gray-500 transition-all duration-200 border border-gray-200 rounded-md bg-transparent focus:outline-none focus:border-green-300 focus:bg-transparent caret-green-300"
                 />
             </div>
-            <label htmlFor='preferences' className="text-base font-medium text-green-300 pt-4"> Preferences </label>
-            <div className="mt-2.5">
+            <label htmlFor='preferences' className="text-base font-medium text-[#3a6062] pt-4"> Preferences </label>
+            <div className="mb-2.5">
                 <input
                     type="text"
                     onChange={handleChange}
                     value={form.preferences}
                     id="preferences"
-                    placeholder="Enter email to get started"
-                    className="block w-full p-4 text-green-300 placeholder-gray-500 transition-all duration-200 border border-gray-200 rounded-md bg-transparent focus:outline-none focus:border-green-300 focus:bg-transparent caret-green-300"
+                    placeholder="Indicate your preferences"
+                    className="block w-full p-4 text-[#3a6062] placeholder-gray-500 transition-all duration-200 border border-gray-200 rounded-md bg-transparent focus:outline-none focus:border-green-300 focus:bg-transparent caret-green-300"
                 />
             </div>
           </div>
         </div>
-        <Button variant={ButtonVariant.discord} isLoading={isLoading} className='my-6' type='submit'>Generate diet</Button>
+        <Button variant={ButtonVariant.secondary} isLoading={isLoading} className='mt-7 inline-flex items-center justify-center px-3 sm:px-5 py-2.5 text-sm sm:text-base font-semibold rounded-md transition-all bg-[#3a3370] text-white hover:bg-[#6459b3] focus:bg-[#6459b3] ' type='submit'>Generate diet</Button>
       </form>
     </div>
     <Footer />

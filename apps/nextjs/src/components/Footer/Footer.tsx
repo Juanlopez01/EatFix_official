@@ -26,13 +26,13 @@ const Footer = () => {
             </svg>
             <span className="self-baseline text-white">Suggestions</span>
           </Link>
-          <div className="mx-2 h-[30px] w-[0.5px] rotate-[20deg] transform bg-neutral-700"></div>
+          <div className="mx-2 h-[30px] w-[0.5px] rotate-[20deg] transform bg-neutral-200"></div>
           <div className="flex items-center gap-x-1">
-            <span className="text-slate-400">Made with</span>
+            <span className="text-white">Made with</span>
             <Icon icon={IconCatalog.heart} className="h-4 w-4 text-red-500" isSolid />
-            <span className="text-slate-400">by </span>
+            <span className="text-white">by </span>
             <Link
-              className="font-medium text-slate-400 underline decoration-dashed decoration-0 underline-offset-4 transition-colors hover:text-green-300"
+              className="font-medium text-white underline decoration-dashed decoration-0 underline-offset-4 transition-colors hover:text-green-300"
               href="https://github.com/Indie-Creator-Community"
               target="_blank"
             >
