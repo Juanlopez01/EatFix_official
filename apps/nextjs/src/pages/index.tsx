@@ -119,11 +119,14 @@ const Home: NextPage = (_props: InferGetServerSidePropsType<typeof getServerSide
         </section>
 
         <section className='relative lg:h-min pt-14 pb-10 sm:pt-32 sm:pb-16 lg:pb-24'>
-          <div className='flex flex-col items-center'>
+          <div className='flex flex-col items-center pb-6'>
             <h3 className='text-[#3a6062] text-3xl font-bold'>How to use Eat Fix?</h3>
           </div>
-          <div>
-            <p className='text-[#52878a]'>Using Eat Fix is simple, just fill in the form with your data and provide us with your email. The team will make the best diet based on your needs, and we will send it directly to your email.</p>
+          <div className='grid grid-cols-1 px-2 gap-4 md:grid-cols-2 md:px-24 md:gap-8 md:items-center'>
+            <p className='text-[#52878a] text-center md:text-lg'>Using Eat Fix is simple, just fill in the form with your data and provide us with your email. The team will make the best diet based on your needs, and we will send it directly to your email.</p>
+            <video autoPlay={true}>
+              <source src='https://res.cloudinary.com/dg0okhqyc/video/upload/v1691502337/EatFix_Hecho_con_Clipchamp_ivou03.mp4' />
+            </video>
           </div>
         </section>
         <Pricing />
