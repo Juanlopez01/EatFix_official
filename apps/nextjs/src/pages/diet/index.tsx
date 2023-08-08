@@ -3,9 +3,10 @@ import { signIn, useSession } from 'next-auth/react'
 import React, { useEffect, useState } from 'react'
 import { Button, ButtonVariant } from 'side-ui'
 import Footer from '~/components/Footer/Footer'
+import Modal from '~/components/Modal/Modal'
 import NavBar from '~/components/NavBar/NavBar'
 import { api } from '~/utils/api'
-import { countries, goalsForm, pricesForm, sizesForm, typeOfDiets } from '~/utils/formUtils'
+import { countries, goalsForm, pricesForm, sizesForm, typeDescriptions, typeOfDiets } from '~/utils/formUtils'
 
 
 
@@ -25,15 +26,15 @@ const Diet : NextPage = () => {
     const {mutate: createDietApi, isLoading} = api.diet.createDiet.useMutation({
       onSuccess: () => setForm({...initialState, userId: form.userId}),
       onError: () => console.log('estoy aca'),
-      
     })
     const [form, setForm ] = useState(initialState)
+    const [showModal, setShowModal] = useState(false)
     useEffect(() => {
       if(session && session.user.id) setForm({...form, userId: session.user.id});
 
     }, [session])
     const handleChange = (event : {target: {id: string, value : string }}) => {
-      event.target.id === 'age' || event.target.id === 'height' || event.target.id === 'weight' ?
+      event.target.id === 'age' ?
       setForm({...form, [event.target.id]: parseInt(event.target.value)}) :
       setForm({...form, [event.target.id]: event.target.value.toString()}) ;
     }
@@ -52,6 +53,7 @@ const Diet : NextPage = () => {
     <NavBar />
     <div className='w-3/4  flex flex-col items-center justify-center pt-20 gap-6 '>
       <h2 className='text-[#3a6062] font-bold text-3xl md:text-5xl'>Diet form</h2>
+      <span> Want to know more about diets? <button onClick={() => setShowModal(true)} className='text-blue-800 underline'>Click here</button></span>
       <form className='flex flex-col w-[95%] items-center justify-center' onSubmit={handleSubmit}>
         <div className='w-full md:flex md:gap-8'>
           <div className='w-full'>
@@ -68,6 +70,15 @@ const Diet : NextPage = () => {
                     return <option value={diet} key={diet}>{diet}</option>;
                   })}
                 </select>
+                <Modal showModal={showModal} setShowModal={setShowModal}>
+                  <div className=''>
+                    <ul>
+                      {typeOfDiets.map((type, index) => {
+                        return <li key={type} className='py-1'><span className='font-semibold'>{`${type}`}</span> {`: ${typeDescriptions[index]}`}</li>
+                      })}
+                    </ul>
+                  </div>
+                </Modal>
             </div>
             <label htmlFor='age'  className="text-base font-medium text-[#3a6062] pt-4"> Age </label>
             <div className="mb-2.5">

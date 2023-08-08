@@ -1,5 +1,19 @@
 export const typeOfDiets : string[] = ['Normal' , 'Mediterranean', 'Ketogenic', 'Vegetarian', 'Vegan', 'Paleo', 'Gluten-Free', 'Dairy-Free', 'Low-Fat', 'Low-Carbohydrate', 'Intermittent Fasting']
 
+export const typeDescriptions = [
+  'Anything special.',
+  'It focuses on fresh and natural foods like fruits, vegetables, fish, nuts, seeds, olive oil, and low-fat dairy products.',
+  'It is a low-carbohydrate, high-fat diet used for weight loss and improved metabolic health.',
+  'It excludes all animal products and is based on foods such as vegetables, fruits, whole grains, legumes, and nuts.',
+  'Similar to a vegetarian diet, but it completely excludes all animal products, including dairy, eggs, and honey.',
+  'It is based on foods that are believed to have been consumed during the Paleolithic era, such as meat, fish, fruits, vegetables, and nuts.',
+  'It excludes any food containing gluten, such as wheat, barley, and rye, and focuses on alternatives like rice, quinoa, and corn.',
+  'It eliminates all dairy products, such as milk, cheese, and butter, and focuses on alternative sources of calcium, like broccoli and almonds.',
+  'It focuses on limiting fat intake, especially saturated fats, and is based on foods like fruits, vegetables, and whole grains.',
+  'It focuses on limiting carbohydrate intake and relies on protein and fat-rich foods like meat, fish, eggs, and avocados.',
+  'It involves alternating periods of fasting with periods of regular eating and can be effective for weight loss and improving metabolic health.'
+]
+
 export const pricesForm : string[] = ['Cheap', 'Normal', 'Expensive'];
 
 export const sizesForm : string[] = ['Average','Skinny', 'Overweight', 'Prefer not to say'];
