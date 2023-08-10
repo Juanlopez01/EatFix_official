@@ -15,7 +15,7 @@ const Home: NextPage = (_props: InferGetServerSidePropsType<typeof getServerSide
     <>
       <Head>
         <title>Eat Fix</title>
-        <meta name="description" content="Side Project Starter Kit" />
+        <meta name="description" content="Eating well has never been easier" />
         <link rel="icon" href="https://res.cloudinary.com/dg0okhqyc/image/upload/v1691181482/eat_fix_pezrn1.png" />
       </Head>
       <div className="bg-gradient-to-b flex flex-col justify-center items-center from-gray-200 relative to-[#558F92]">
