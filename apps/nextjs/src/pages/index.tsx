@@ -6,7 +6,6 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import NavBar from '~/components/NavBar/NavBar';
 import Pricing from '~/components/Pricing/Pricing';
 import Footer from '~/components/Footer/Footer';
-import Image from 'next/image';
 
 type HomeProps = {};
 

@@ -18,7 +18,7 @@ const Footer = () => {
           </Link>
           <Link
             className="group relative isolate flex flex-none items-center gap-x-3 rounded-lg px-2 py-0.5 font-medium text-white/30 transition-colors hover:text-primary-200"
-            href="https://discord.com/invite/77guznJ8mZ"
+            href="https://eatfix.canny.io/feature-requests/p/eat-fix"
             target="_blank"
           >
             <svg className='h-6 w-6' viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
