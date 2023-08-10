@@ -6,6 +6,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import NavBar from '~/components/NavBar/NavBar';
 import Pricing from '~/components/Pricing/Pricing';
 import Footer from '~/components/Footer/Footer';
+import Image from 'next/image';
 
 type HomeProps = {};
 
@@ -114,6 +115,7 @@ const Home: NextPage = (_props: InferGetServerSidePropsType<typeof getServerSide
                             <p className="ml-3 text-sm text-[#52878a] font-semibold">Secured & safe online payment</p>
                         </div>
                     </div>
+                    <a href="https://www.producthunt.com/posts/eat-fix?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-eat&#0045;fix" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=408989&theme=light" alt="Eat&#0032;Fix - AI&#0032;transforms&#0032;eating&#0058;&#0032;Healthier&#0032;choices&#0032;in&#0032;your&#0032;busy&#0032;life&#0046; | Product Hunt" className='w-60 h-20 py-5 mt-4' /></a>
                 </div>
             </div>
         </section>
@@ -124,9 +126,7 @@ const Home: NextPage = (_props: InferGetServerSidePropsType<typeof getServerSide
           </div>
           <div className='grid grid-cols-1 px-2 gap-4 md:grid-cols-2 md:px-24 md:gap-8 md:items-center'>
             <p className='text-[#52878a] text-center md:text-lg'>Using Eat Fix is simple, just fill in the form with your data and provide us with your email. The team will make the best diet based on your needs, and we will send it directly to your email.</p>
-            <video autoPlay={true}>
-              <source src='https://res.cloudinary.com/dg0okhqyc/video/upload/v1691502337/EatFix_Hecho_con_Clipchamp_ivou03.mp4' />
-            </video>
+            <video autoPlay src='https://res.cloudinary.com/dg0okhqyc/video/upload/v1691671595/EatfixNuevo_qpbb9r.mov'  controls={true} className='rounded-lg'/>
           </div>
         </section>
         <Pricing />

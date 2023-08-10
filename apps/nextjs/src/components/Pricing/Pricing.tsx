@@ -52,7 +52,7 @@ const Pricing = () => {
                                 </li>
                             </ul>
 
-                            <button onClick={() => signIn('auth0')} title="" className="inline-flex items-center justify-center w-full px-4 py-4 mt-8 font-semibold text-[#3a6062] transition-all duration-200 bg-green-800 bg-opacity-30 rounded-md hover:bg-green-900 focus:bg-green-900" role="button"> Get plan </button>
+                            <button onClick={() => signIn('auth0')} title="" className="inline-flex items-center justify-center w-full px-4 py-4 mt-8 font-semibold text-[#3a6062] transition-all duration-200 bg-green-800 bg-opacity-30 rounded-md hover:bg-green-900 focus:bg-green-900"> Get free trial </button>
                         </div>
                     </div>
                     <div className="bg-white bg-opacity-20 border-4 border-transparent rounded-md">
@@ -93,7 +93,7 @@ const Pricing = () => {
                                 </li>
                             </ul>
 
-                            <Link href="/" title="" className="inline-flex items-center justify-center w-full px-4 py-4 mt-8 font-semibold text-[#3a6062] transition-all duration-200 bg-green-800 bg-opacity-30 rounded-md hover:bg-green-900 focus:bg-green-900" role="button"> Get plan </Link>
+                            <Link href="https://eatfix.lemonsqueezy.com/checkout/buy/75656901-c030-41fd-857d-ebfb561f4c06" title="" className="inline-flex items-center justify-center w-full px-4 py-4 mt-8 font-semibold text-[#3a6062] transition-all duration-200 bg-green-800 bg-opacity-30 rounded-md hover:bg-green-900 focus:bg-green-900" role="button"> Get plan </Link>
                         </div>
                     </div>
 
@@ -135,7 +135,7 @@ const Pricing = () => {
                                 </li>
                             </ul>
 
-                            <a href="/" title="" className="inline-flex items-center justify-center w-full px-4 py-4 mt-8 font-semibold text-white transition-all duration-200 rounded-md bg-gradient-to-l from-[#2e2572] to-blue-400 hover:opacity-80 focus:opacity-80" role="button"> Get plan </a>
+                            <Link href="https://eatfix.lemonsqueezy.com/checkout/buy/f32d6dcd-eea1-41ff-b0b4-2be5ea188502" title="" className="inline-flex items-center justify-center w-full px-4 py-4 mt-8 font-semibold text-white transition-all duration-200 rounded-md bg-gradient-to-l from-[#2e2572] to-blue-400 hover:opacity-80 focus:opacity-80" role="button"> Get plan </Link>
                         </div>
                     </div>
                 </div>
