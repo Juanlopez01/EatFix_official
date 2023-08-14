@@ -1,6 +1,7 @@
 import { PrismaAdapter } from '@next-auth/prisma-adapter';
 import { type DefaultSession, type NextAuthOptions } from 'next-auth';
 import Auth0Provider, { type Auth0Profile} from 'next-auth/providers/auth0';
+import GoogleProvider, { type GoogleProfile} from 'next-auth/providers/google';
 import { prisma } from '@acme/db';
 import {
   createAccountHandler,
@@ -46,6 +47,10 @@ export const authOptions: NextAuthOptions = {
       clientSecret: process.env.AUTH0_CLIENT_SECRET as string,
       issuer: process.env.AUTH0_ISSUER as string
     }),
+    GoogleProvider({
+      clientId: process.env.GOOGLE_CLIENT_ID as string,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
+    })
     /**
      * ...add more providers here
      *
