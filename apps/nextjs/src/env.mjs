@@ -22,7 +22,6 @@ const server = z.object({
   AUTH0_CLIENT_SECRET: z.string(),
   AUTH0_ISSUER: z.string(),
   NEXTAUTH_JWT_SECRET: z.string().min(1),
-  DISCORD_WEBHOOK_URL: z.string().url().min(1),
   PREFIX: z.string(),
 });
 
@@ -50,7 +49,6 @@ const processEnv = {
   AUTH0_CLIENT_SECRET: process.env.AUTH0_CLIENT_SECRET,
   AUTH0_ISSUER: process.env.AUTH0_ISSUER,
   NEXTAUTH_JWT_SECRET: process.env.NEXTAUTH_JWT_SECRET,
-  DISCORD_WEBHOOK_URL: process.env.DISCORD_WEBHOOK_URL,
   PREFIX: process.env.PREFIX,
   // NEXT_PUBLIC_CLIENTVAR: process.env.NEXT_PUBLIC_CLIENTVAR,
 };
