@@ -1,7 +1,7 @@
 import { PrismaAdapter } from '@next-auth/prisma-adapter';
 import { type DefaultSession, type NextAuthOptions } from 'next-auth';
 import Auth0Provider, { type Auth0Profile} from 'next-auth/providers/auth0';
-import GoogleProvider, { type GoogleProfile} from 'next-auth/providers/google';
+import GoogleProvider from 'next-auth/providers/google';
 import { prisma } from '@acme/db';
 import {
   createAccountHandler,
