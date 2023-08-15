@@ -79,6 +79,7 @@ model User {
     updatedAt     DateTime  @updatedAt @map("updated_at")
     diets         Diet[]
     plan          String
+    dietQuota     Int
 
     @@map("users")
 }

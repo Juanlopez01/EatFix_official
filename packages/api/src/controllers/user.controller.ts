@@ -69,10 +69,11 @@ export const createUserHandler = async ({ ctx, input }: Params<CreateUserInputTy
   try {
     const user = await ctx.prisma.user.create({
       data: {
-        plan: input.plan?? 'none',
+        plan: input.plan?? 'Free',
         name: input.name,
         image: input.image,
         email: input.email,
+        dietQuota: input.dietQuota ?? 1,
       },
     });
 

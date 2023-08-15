@@ -35,7 +35,8 @@ export const createUserInput = z.object({
   name: z.string(),
   email: z.string().optional(),
   image: z.string().default(''),
-  plan: z.string().optional()
+  plan: z.string().optional(),
+  dietQuota: z.number().optional(),
 });
 export type CreateUserInputType = TypeOf<typeof createUserInput>;
 

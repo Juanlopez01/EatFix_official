@@ -12,6 +12,7 @@ export const createDietSchema = z.object({
   dontuse: z.string().optional(),
   preferences: z.string().optional(),
   userId: z.string(),
+  dietQuota: z.number().optional(),
 });
 export type CreateDietTypes = TypeOf<typeof createDietSchema>;
 

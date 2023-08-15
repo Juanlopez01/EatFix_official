@@ -36,5 +36,5 @@ export const userRouter = createTRPCRouter({
 
   create: publicProcedure
     .input(createUserInput)
-    .mutation(async ({ ctx, input }) => createUserHandler({ ctx, input })),
+    .mutation(async ({ ctx, input }) => createUserHandler({ ctx, input })),   
 });
