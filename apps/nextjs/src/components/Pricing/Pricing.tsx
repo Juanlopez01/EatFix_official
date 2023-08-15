@@ -93,7 +93,7 @@ const Pricing = () => {
                                 </li>
                             </ul>
 
-                            <Link href="https://eatfix.lemonsqueezy.com/checkout/buy/75656901-c030-41fd-857d-ebfb561f4c06" title="" className="inline-flex items-center justify-center w-full px-4 py-4 mt-8 font-semibold text-[#3a6062] transition-all duration-200 bg-green-800 bg-opacity-30 rounded-md hover:bg-green-900 focus:bg-green-900" role="button"> Get plan </Link>
+                            <Link href="https://eatfix.lemonsqueezy.com/checkout/buy/ea897c42-7faf-4c57-9df7-e4f40626d657" title="" className="inline-flex items-center justify-center w-full px-4 py-4 mt-8 font-semibold text-[#3a6062] transition-all duration-200 bg-green-800 bg-opacity-30 rounded-md hover:bg-green-900 focus:bg-green-900" role="button"> Get plan </Link>
                         </div>
                     </div>
 
@@ -135,7 +135,7 @@ const Pricing = () => {
                                 </li>
                             </ul>
 
-                            <Link href="https://eatfix.lemonsqueezy.com/checkout/buy/f32d6dcd-eea1-41ff-b0b4-2be5ea188502" title="" className="inline-flex items-center justify-center w-full px-4 py-4 mt-8 font-semibold text-white transition-all duration-200 rounded-md bg-gradient-to-l from-[#2e2572] to-blue-400 hover:opacity-80 focus:opacity-80" role="button"> Get plan </Link>
+                            <Link href="https://eatfix.lemonsqueezy.com/checkout/buy/f40a9852-e2dc-4aa7-b2b5-385385109021" title="" className="inline-flex items-center justify-center w-full px-4 py-4 mt-8 font-semibold text-white transition-all duration-200 rounded-md bg-gradient-to-l from-[#2e2572] to-blue-400 hover:opacity-80 focus:opacity-80" role="button"> Get plan </Link>
                         </div>
                     </div>
                 </div>

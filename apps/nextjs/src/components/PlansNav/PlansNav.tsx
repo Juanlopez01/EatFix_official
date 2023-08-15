@@ -8,7 +8,7 @@ const PlansNav = ({id} : Props) => {
     const user = api.user.getById.useQuery({id: id})
         if(user.data?.plan !== 'Premium'){
             return (<>
-                <Link href='/diet'>
+                <Link href='https://eatfix.lemonsqueezy.com/checkout/buy/f40a9852-e2dc-4aa7-b2b5-385385109021'>
                 <button id='diet' className='hidden md:flex gap-2 items-center justify-center text-[#52878a] font-semibold border-[#10b981] border-2 rounded-md px-4 py-2 hover:bg-[#10b98123]'>
                     <label htmlFor='diet'>Upgrade to premium</label>
                     <svg className='w-6 h-6' viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">

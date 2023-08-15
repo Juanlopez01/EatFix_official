@@ -13,8 +13,9 @@ const NavBar= () => {
             <div className="px-4 mx-auto sm:px-6 lg:px-8">
                 <div className="flex items-center justify-between h-16 lg:h-20">
                     <div className='flex-shrink-0'>
-                      {/* <p className='text-white text-3xl mr-6 font-bold'><span className='text-green-300'>E</span>at <span className='text-green-300'>F</span>ix</p> */}
-                      <Image src='https://res.cloudinary.com/dg0okhqyc/image/upload/v1691181482/eat_fix_pezrn1.png' alt='logo' width={70} height={70}/>
+                      <Link href='/'>
+                        <Image src='https://res.cloudinary.com/dg0okhqyc/image/upload/v1691181482/eat_fix_pezrn1.png' alt='logo' width={70} height={70}/>
+                      </Link>
                     </div>
 
                     <div className="hidden lg:flex lg:items-center lg:justify-center lg:space-x-10">
