@@ -28,6 +28,7 @@ const Diet : NextPage = () => {
     userId: '',
     dietQuota:counter,
   }
+  const [successModal, setSuccessModal] = useState(false);
   const [form, setForm ] = useState(initialState)
   const [showModal, setShowModal] = useState(false)
   useEffect(() => {
@@ -37,6 +38,7 @@ const Diet : NextPage = () => {
     onSuccess: () => {
       setForm({...initialState, userId: form.userId})
       setCounter(counter - 1)
+      setSuccessModal(true)
     },
     onError: () => setShowErrorModal(true),
   })
@@ -94,6 +96,12 @@ const Diet : NextPage = () => {
                   <Modal showModal={showErrorModal} setShowModal={setShowErrorModal} title='Error'>
                         <div>
                           <span>You have no remaining diets</span>
+                        </div>
+                  </Modal>
+                  <Modal showModal={successModal} setShowModal={setSuccessModal} title='Your diet was generated correctly'>
+                        <div className='flex flex-col gap-4 text-center text-lg'>
+                          <span>Your diet will be sent to your mail shortly.</span>
+                          <span>This may take a while depending on demand, don`t worry!</span>
                         </div>
                   </Modal>
               </div>
