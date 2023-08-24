@@ -2,6 +2,7 @@ import { PrismaAdapter } from '@next-auth/prisma-adapter';
 import { type DefaultSession, type NextAuthOptions } from 'next-auth';
 import Auth0Provider, { type Auth0Profile} from 'next-auth/providers/auth0';
 import GoogleProvider from 'next-auth/providers/google';
+import CredentialsProvider from 'next-auth/providers/credentials';
 import { prisma } from '@acme/db';
 import {
   createAccountHandler,
@@ -50,7 +51,8 @@ export const authOptions: NextAuthOptions = {
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID as string,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
-    })
+    }),
+    
     /**
      * ...add more providers here
      *
@@ -66,7 +68,7 @@ export const authOptions: NextAuthOptions = {
      * The callback -> signIn() is a function to next-auth
      * that permits you to customize the sign in process.
      */
-    async signIn({ account, profile, user: newUser }): Promise<boolean | string> {
+    async signIn({ account, profile, user: newUser },): Promise<boolean | string> {
       /**
        * The Discord provider flow
        */

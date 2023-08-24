@@ -12,7 +12,7 @@ const Signin: NextPage = () => {
       <div className="relative flex flex-col items-center justify-center rounded-lg bg-slate-800 p-10">
         <button
           className="bg-primary-200/20 text-primary-50 hover:bg-primary-200/30 relative flex min-w-fit items-center justify-center overflow-hidden whitespace-nowrap rounded-lg px-4 py-2 text-center text-sm font-semibold transition duration-100 ease-out"
-          onClick={() => signIn('discord')}
+          onClick={() => signIn('')}
         >
           {t('nextjs:component.button.logInWithDiscord')}
         </button>
