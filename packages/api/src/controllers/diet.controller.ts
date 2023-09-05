@@ -7,7 +7,6 @@ require('dotenv').config();
 import type {
   CreateDietTypes,
 } from '../schema/diet.schema';
-import { responseController } from './utils.ts/responseController';
 const apiKey = process.env.OPENAI_API_KEY as string
 const openai = new OpenAI({
   apiKey: apiKey,
@@ -27,30 +26,28 @@ export const createDietHandler = async ({ ctx, input }: Params<CreateDietTypes>)
         messages: [{role: 'user' , content: `creates a weekly diet in string format to parse with JSON.parse ordered as follows : { "Monday":  {"breakfast"," lunch"," snack","dinner"}} and so with all days of the week.Also create it with the following features: Country: ${input.country ?? 'any'} , Size: ${input.size ?? 'Average'}, Age: ${input.age ?? 'any'}, Goal: ${input.goal ?? 'any'}, Cost: ${input.price ?? 'Normal'}, Diet: ${input.type ?? 'Normal'} ${input.preferences ? `, Preferences: ${input.preferences?? 'nothing'}` : ''} ${input.dontuse ? `, Foods to avoid: ${input.dontuse ?? 'nothing'}`: ''}.`}],
         model: "gpt-3.5-turbo",
       }).catch(err => {return err})
-      const dietResponse = await response
 
-      const diet = await ctx.prisma.diet.create({
-        data: {
-          type: input.type ?? 'Normal',
-          age: input.age,
-          size: input.size ?? '',
-          goal: input.goal ?? '',
-          country: input.country ?? '',
-          price: input.price ?? '',
-          dontuse: input.dontuse ?? '',
-          preferences: input.preferences ?? '',
-          user: {
-            connect: { id: input.userId },
-          },
-        },
-      });
-      const responseConter = await responseController(dietResponse.choices[0].message.content)
+      // const diet = await ctx.prisma.diet.create({
+      //   data: {
+      //     type: input.type ?? 'Normal',
+      //     age: input.age,
+      //     size: input.size ?? '',
+      //     goal: input.goal ?? '',
+      //     country: input.country ?? '',
+      //     price: input.price ?? '',
+      //     dontuse: input.dontuse ?? '',
+      //     preferences: input.preferences ?? '',
+      //     user: {
+      //       connect: { id: input.userId },
+      //     },
+      //   },
+      // });
+      const responseConter = JSON.parse(response.choices[0].message.content)
       return {
         status: Response.SUCCESS,
         data: {
           dietResponse: responseConter, 
           user,
-          diet,
         },
       };}
   } catch (error: unknown) {
