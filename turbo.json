@@ -46,6 +46,7 @@
     "NEXTAUTH_URL",
     "NODE_ENV",
     "SKIP_ENV_VALIDATION",
+    "OPENAI_API_KEY",
     "VERCEL",
     "VERCEL_URL",
     "API_URL"

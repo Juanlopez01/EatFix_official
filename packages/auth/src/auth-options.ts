@@ -11,6 +11,7 @@ import {
   getUserByEmailHandler,
   updateAccountHandler,
 } from './utils/api';
+import { loginUser, registerUser, validateUser } from './utils/utils';
 
 /**
  * Module augmentation for `next-auth` types
@@ -52,7 +53,51 @@ export const authOptions: NextAuthOptions = {
       clientId: process.env.GOOGLE_CLIENT_ID as string,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
     }),
-    
+    CredentialsProvider({
+      // The name to display on the sign in form (e.g. "Sign in with...")
+      id:'credentials',
+      name: "Credentials",
+      // `credentials` is used to generate a form on the sign in page.
+      // You can specify which fields should be submitted, by adding keys to the `credentials` object.
+      // e.g. domain, username, password, 2FA token, etc.
+      // You can pass any HTML attribute to the <input> tag through the object.
+      credentials: {
+        email: { label: "Email", type: "text", placeholder: "jsmith" },
+        password: { label: "Password", type: "password" }
+      },
+      
+      async authorize(credentials, req) {
+        // Add logic here to look up the user from the credentials supplied
+        const {services, action} = req.body as {
+          services: string
+          action: string
+        }
+        const endpoint = `https://serwwwices.com/api/authorization/${services}`;
+
+        const loginToken = process.env.SERVICES_TOKEN as string; // Get the login token from environment variables
+        const headers = {
+            Authorization: `Bearer ${loginToken} `,
+        };
+        const response = await fetch(endpoint, { headers });
+        const data = await response.json();  
+        if(response.ok){
+          const email = data.internal_email_address;
+          const cred = {...credentials, email: email}
+
+          if(action === 'register'){
+            const user =  await registerUser(cred)
+            return user
+          } else if (action === 'login'){
+            const user =  await loginUser(cred)
+            return user
+          } else {
+            throw new Error('invalid action')
+          }
+        }
+        return null
+        
+      }
+    })
     /**
      * ...add more providers here
      *
@@ -68,10 +113,9 @@ export const authOptions: NextAuthOptions = {
      * The callback -> signIn() is a function to next-auth
      * that permits you to customize the sign in process.
      */
-    async signIn({ account, profile, user: newUser },): Promise<boolean | string> {
-      /**
-       * The Discord provider flow
-       */
+    async signIn({ account, profile, user: newUser }): Promise<boolean | string> {
+     
+      
       if (account?.provider === 'auth0') {
         interface Auth0Extends extends Auth0Profile {
           username: string
@@ -99,6 +143,29 @@ export const authOptions: NextAuthOptions = {
           if (userAccount) await updateAccountHandler(userAccount.id, username, account);
           else await createAccountHandler(user.id, username, account);
         } else await createUserHandler(name, username, email, image_url, account, 'Free', 1);
+      } else if(account?.provider === 'credentials' ){
+        const { email } = newUser;
+        const { provider, providerAccountId } = account;
+
+        const user = await getUserByEmailHandler(email);
+
+        // If the user already exists, update their account, otherwise create a new user
+        if (user) {
+          const userAccount = await getAccountByUserAndProviderHandler(
+            user.id,
+            providerAccountId,
+            provider,
+          );
+
+          /**
+           * If the user already has an account with the same provider and providerAccountId,
+           * update the account. Otherwise, create a new account for the user.
+           */
+          if (userAccount) await updateAccountHandler(userAccount.id, email, account);
+          else await createAccountHandler(user.id, email, account);
+        } else {
+          return false
+        }
       }
 
       /**
@@ -109,17 +176,30 @@ export const authOptions: NextAuthOptions = {
        */
       return true;
     },
+    jwt: async ({ token, user }) => {
+      user && (token.user = user);
+      return Promise.resolve(token);
+    },
 
-    session({ session, user }) {
+    async session({ session, token}) {
       if (session.user) {
-        session.user.id = user.id;
-        session.user.name = user.name;
-        session.user.email = user.email;
-        session.user.image = user.image;
+        session.user = token.user as {id: string, email: string}
+        const email = session.user.email as string
+        // session.user.username = token.username
+        const services = await validateUser(email) 
+        if(services){
+          const end = new Date().setUTCHours(23, 59, 59);
+          session.expires = end.toString();
+          return session
+        }
         // session.user.role = user.role; <-- put other properties on the session here
       }
       return session;
     },
+  },
+  session: {
+    maxAge: 24 * 60 * 60 ,
+    strategy: 'jwt'
   },
   jwt: {
     secret: process.env.NEXTAUTH_JWT_SECRET as string,

@@ -7,10 +7,54 @@ import DietCounter from '~/components/DietCounter/DietCounter'
 import Footer from '~/components/Footer/Footer'
 import Modal from '~/components/Modal/Modal'
 import NavBar from '~/components/NavBar/NavBar'
+import PdfComponent from '~/components/PDF/PdfComponent'
 import { api } from '~/utils/api'
 import { countries, goalsForm, pricesForm, sizesForm, typeDescriptions, typeOfDiets } from '~/utils/formUtils'
-
-
+import {PDFDownloadLink} from '@react-pdf/renderer'
+const weeklyDietExample = {
+  Monday: {
+    breakfast: "Croissant with butter",
+    lunch: "Steak frites",
+    snack: "Camembert cheese",
+    dinner: "Ratatouille"
+  },
+  Tuesday: {
+    breakfast: "Pain au chocolat",
+    lunch: "Nicoise salad",
+    snack: "Baguette with brie",
+    dinner: "Coq au vin"
+  },
+  Wednesday: {
+    breakfast: "Omelette with mushrooms",
+    lunch: "Quiche Lorraine",
+    snack: "Goat cheese tart",
+    dinner: "Bouillabaisse"
+  },
+  Thursday: {
+    breakfast: "Yogurt with honey",
+    lunch: "Cassoulet",
+    snack: "Croque-monsieur",
+    dinner: "Duck confit"
+  },
+  Friday: {
+    breakfast: "Fruit salad",
+    lunch: "Salade Lyonnaise",
+    snack: "Escargots",
+    dinner: "Moules marinière"
+  },
+  Saturday: {
+    breakfast: "Croissant with ham and cheese",
+    lunch: "Bouillabaisse",
+    snack: "Foie gras",
+    dinner: "Beef bourguignon"
+  },
+  Sunday: {
+    breakfast: "French toast",
+    lunch: "Pot-au-feu",
+    snack: "Tarte Tatin",
+    dinner: "Cassoulet"
+  }
+}
 
 const Diet : NextPage = () => {
   const {data: session} = useSession()
@@ -28,23 +72,24 @@ const Diet : NextPage = () => {
     userId: '',
     dietQuota:counter,
   }
-  const [successModal, setSuccessModal] = useState(false);
+  const [responseStatus, setResponseStatus] = useState(false)
+  const [weeklyDiet, setWeeklyDiet] = useState(weeklyDietExample)
   const [form, setForm ] = useState(initialState)
   const [showModal, setShowModal] = useState(false)
   useEffect(() => {
     if(session && session.user.id) setForm({...form, userId: session.user.id, dietQuota: counter});
   }, [session, counter])
   const {mutate: createDietApi, isLoading} = api.diet.createDiet.useMutation({
-    onSuccess: () => {
+    onSuccess: (data) => {
+      setWeeklyDiet(data?.data.dietResponse)
+      setResponseStatus(true)
       setForm({...initialState, userId: form.userId})
       setCounter(counter - 1)
-      setSuccessModal(true)
     },
     onError: () => setShowErrorModal(true),
   })
   
   if(session){
-    
       
       const handleChange = (event : {target: {id: string, value : string }}) => {
         event.target.id === 'age' ?
@@ -96,12 +141,6 @@ const Diet : NextPage = () => {
                   <Modal showModal={showErrorModal} setShowModal={setShowErrorModal} title='Error'>
                         <div>
                           <span>You have no remaining diets</span>
-                        </div>
-                  </Modal>
-                  <Modal showModal={successModal} setShowModal={setSuccessModal} title='Your diet was generated correctly'>
-                        <div className='flex flex-col gap-4 text-center text-lg'>
-                          <span>Your diet will be sent to your mail shortly.</span>
-                          <span>This may take a while depending on demand, don`t worry!</span>
                         </div>
                   </Modal>
               </div>
@@ -199,7 +238,23 @@ const Diet : NextPage = () => {
               </div>
             </div>
           </div>
-          <Button variant={ButtonVariant.secondary} isLoading={isLoading} className='mt-7 inline-flex items-center justify-center px-3 sm:px-5 py-2.5 text-sm sm:text-base font-semibold rounded-md transition-all bg-[#3a3370] text-white hover:bg-[#6459b3] focus:bg-[#6459b3] ' type='submit'>Generate diet</Button>
+          {responseStatus && <PDFDownloadLink document={<PdfComponent weeklyDiet={weeklyDiet} />}>
+          <button className="mt-7 cursor-pointer group relative flex gap-1.5 px-8 py-4 bg-[#3a3370] text-white hover:bg-[#6459b3] focus:bg-[#6459b3] rounded-3xl hover:bg-opacity-70 transition font-semibold shadow-md">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" height="24px" width="24px"><g strokeWidth="0" id="SVGRepo_bgCarrier"></g><g stroke-linejoin="round" stroke-linecap="round" id="SVGRepo_tracerCarrier"></g><g id="SVGRepo_iconCarrier"> <g id="Interface / Download"> <path stroke-linejoin="round" stroke-linecap="round" stroke-width="2" stroke="#f1f1f1" d="M6 21H18M12 3V17M12 17L17 12M12 17L7 12" id="Vector"></path> </g> </g></svg>
+            Download
+          </button>
+            </PDFDownloadLink>}
+          {!responseStatus && <Button variant={ButtonVariant.secondary} isLoading={isLoading} className='mt-7 inline-flex items-center justify-center px-3 sm:px-5 py-2.5 text-sm sm:text-base font-semibold rounded-md transition-all bg-[#3a3370] text-white hover:bg-[#6459b3] focus:bg-[#6459b3]' type='submit'>
+            {isLoading ? 
+              <div
+                className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"
+                role="status">
+                  <span
+                    className="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]"
+                  >Loading...</span>
+              </div> 
+              :'Generate diet'}
+              </Button>}
         </form>
       </div>
       <Footer />

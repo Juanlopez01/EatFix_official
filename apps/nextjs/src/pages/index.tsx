@@ -10,7 +10,7 @@ import Footer from '~/components/Footer/Footer';
 type HomeProps = {};
 
 const Home: NextPage = (_props: InferGetServerSidePropsType<typeof getServerSideProps>) => {
-  const { data: session } = useSession();
+  const { data: session} = useSession();
   return (
     <>
       <Head>
@@ -31,7 +31,6 @@ const Home: NextPage = (_props: InferGetServerSidePropsType<typeof getServerSide
                 {/* <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-700 to-green-500">Eating well has never been easier</span> */}
               </h1>
               <p className="mt-5 text-base text-[#52878a] sm:text-xl">With our diets, well-being is within your reach.</p>
-
               {!session && <button className='mt-7 font-semibold rounded-md transition-all bg-[#3a3370] text-white px-10 py-3 hover:bg-[#6459b3] focus:bg-[#6459b3]' onClick={() => signIn('auth0')}>Sign In</button>}
               {session && <Link href={'/diet'}><button className='mt-7 rounded-md transition-all bg-[#3a3370] text-white px-10 py-3 hover:bg-[#6459b3] focus:bg-[#6459b3]'>Get diet</button></Link>}
 
