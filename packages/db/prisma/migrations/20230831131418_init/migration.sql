@@ -54,6 +54,7 @@ CREATE TABLE "verification_tokens" (
 CREATE TABLE "users" (
     "id" TEXT NOT NULL,
     "name" TEXT,
+    "hashedPassword" TEXT,
     "email" TEXT,
     "image" TEXT NOT NULL DEFAULT '',
     "email_verified" TIMESTAMP(3),
