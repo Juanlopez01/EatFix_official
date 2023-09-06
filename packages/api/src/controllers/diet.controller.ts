@@ -24,7 +24,7 @@ export const createDietHandler = async ({ ctx, input }: Params<CreateDietTypes>)
       })
       const response = await openai.chat.completions.create({
         messages: [{role: 'user' , content: `creates a weekly diet in string format to parse with JSON.parse ordered as follows : { "Monday":  {"breakfast"," lunch"," snack","dinner"}} and so with all days of the week.Also create it with the following features: Country: ${input.country ?? 'any'} , Size: ${input.size ?? 'Average'}, Age: ${input.age ?? 'any'}, Goal: ${input.goal ?? 'any'}, Cost: ${input.price ?? 'Normal'}, Diet: ${input.type ?? 'Normal'} ${input.preferences ? `, Preferences: ${input.preferences?? 'nothing'}` : ''} ${input.dontuse ? `, Foods to avoid: ${input.dontuse ?? 'nothing'}`: ''}.`}],
-        model: "gpt-3.5-turbo",
+        model: 'gpt-3.5-turbo-0613',
       }).catch(err => {return err})
 
       // const diet = await ctx.prisma.diet.create({
