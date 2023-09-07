@@ -1,3 +1,4 @@
+
 import OpenAI from 'openai';
 import { TRPCError } from '@trpc/server';
 import { z } from 'zod';
@@ -11,6 +12,11 @@ const apiKey = process.env.OPENAI_API_KEY as string
 const openai = new OpenAI({
   apiKey: apiKey,
 })
+
+export const config = {
+  runtime: 'edge',
+};
+
 export const createDietHandler = async ({ ctx, input }: Params<CreateDietTypes>) => {
   try {
     if(input.dietQuota && input.dietQuota > 0){
