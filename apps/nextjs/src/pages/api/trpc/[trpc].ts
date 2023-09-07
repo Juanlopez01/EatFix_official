@@ -11,7 +11,10 @@ export default createNextApiHandler({
 // const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 //   // Enable cors
 //   await cors(req, res);
-
+// We're using the edge-runtime
+export const config = {
+  runtime: 'edge',
+};
 //   // Let the tRPC handler do its magic
 //   return createNextApiHandler({
 //     router: appRouter,
